@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air France PTFS - Académie Virtuelle</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0c1929 0%, #1a2332 50%, #0f1c2e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(12, 25, 41, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 0 2rem;
+        }
+
+        .nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav a:hover {
+            background: rgba(29, 161, 242, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+        }
+
+        /* Hero Banner */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem 6rem;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2a4a6b 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(29, 161, 242, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, #1da1f2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: #b8c6db;
+            font-weight: 400;
+        }
+
+        .discord-btn {
+            display: inline-block;
+            background: #1da1f2;
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(29, 161, 242, 0.3);
+        }
+
+        .discord-btn:hover {
+            background: #0d8bd4;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(29, 161, 242, 0.4);
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* Recruitment Steps */
+        .steps-container {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .step {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1da1f2;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .step-number {
+            background: #1da1f2;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Revision Cards */
+        .revision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .revision-card {
+            background: rgba(29, 161, 242, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(29, 161, 242, 0.3);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .revision-card:hover {
+            background: rgba(29, 161, 242, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .revision-card h4 {
+            color: #1da1f2;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* Test Section */
+        .test-info {
+            background: linear-gradient(135deg, rgba(29, 161, 242, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(29, 161, 242, 0.3);
+        }
+
+        .score-highlight {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1da1f2;
+            margin: 1rem 0;
+        }
+
+        /* Interview Section */
+        .interview-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .interview-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .interview-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Rank System Table */
+        .rank-table {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .rank-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .rank-table th,
+        .rank-table td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .rank-table th {
+            background: rgba(29, 161, 242, 0.2);
+            color: #1da1f2;
+            font-weight: 600;
+        }
+
+        .rank-table td:last-child {
+            text-align: center;
+            font-weight: 600;
+            color: #1da1f2;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .rank-table th,
+            .rank-table td {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Formation Section Styles */
+        .formation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .formation-module {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .formation-module:hover {
+            transform: translateY(-5px);
+            background: rgba(29, 161, 242, 0.1);
+            border-color: rgba(29, 161, 242, 0.3);
+        }
+
+        .module-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .formation-module h3 {
+            color: #1da1f2;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .module-content p {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .module-content ul {
+            color: #b8c6db;
+            padding-left: 1.5rem;
+            list-style-type: disc;
+        }
+
+        .module-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .alphabet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .alphabet-grid span {
+            background: rgba(29, 161, 242, 0.2);
+            padding: 0.4rem 0.2rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.85rem;
+            border: 1px solid rgba(29, 161, 242, 0.3);
+            color: #ffffff;
+        }
+
+        /* Test info styles */
+        .test-info ul {
+            color: #b8c6db;
+            padding-left: 1.5rem;
+            max-width: 600px;
+            margin: 1rem auto;
+            list-style-type: disc;
+        }
+
+        .test-info li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Interview card styles */
+        .interview-card ul {
+            color: #b8c6db;
+            padding-left: 1.5rem;
+            list-style-type: disc;
+        }
+
+        .interview-card li {
+            margin-bottom: 0.5rem;
+        }
+        .progress-bar {
+            background: rgba(29, 161, 242, 0.2);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #1da1f2, #0d8bd4);
+            height: 100%;
+            width: 50%;
+            border-radius: 4px;
+            animation: progressFill 2s ease-in-out;
+        }
+
+        @keyframes progressFill {
+            from { width: 0%; }
+            to { width: 50%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav">
+            <a href="#accueil">Accueil</a>
+            <a href="#formation">Formation</a>
+            <a href="#recrutement">Examen de recrutement</a>
+            <a href="#rangs">Système de rang</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <!-- Hero Banner -->
+        <section id="accueil" class="hero">
+            <div class="hero-content">
+                <h1>Bienvenue chez Air France PTFS</h1>
+                <p>Rejoignez notre académie virtuelle et devenez un pilote certifié sur PTFS</p>
+                <a href="https://discord.gg/QHF6RCjEPt" class="discord-btn" target="_blank">
+                    Rejoins-nous sur Discord
+                </a>
+            </div>
+        </section>
+
+        <!-- Formation Section -->
+        <section id="formation" class="section">
+            <h2 class="section-title">📚 Formation théorique</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: #b8c6db;">
+                Avant de passer l'examen de recrutement, vous devez maîtriser ces notions essentielles
+            </p>
+            
+            <div class="formation-grid">
+                <div class="formation-module">
+                    <div class="module-icon">💡</div>
+                    <h3>PAPI lights</h3>
+                    <div class="module-content">
+                        <p><strong>Système d'approche lumineux</strong></p>
+                        <ul>
+                            <li>4 lumières sur le côté de la piste</li>
+                            <li>Rouge = trop bas, Blanc = trop haut</li>
+                            <li>2 rouges + 2 blancs = parfait !</li>
+                            <li>Guide le pilote pour un angle d'approche optimal</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="formation-module">
+                    <div class="module-icon">🌪️</div>
+                    <h3>Windshear (Cisaillement du vent)</h3>
+                    <div class="module-content">
+                        <p><strong>Changement soudain de la vitesse/direction du vent</strong></p>
+                        <ul>
+                            <li>Très dangereux pendant décollage/atterrissage</li>
+                            <li>Peut faire perdre/gagner de l'altitude rapidement</li>
+                            <li>Souvent causé par les orages</li>
+                            <li>Nécessite une réaction immédiate du pilote</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="formation-module">
+                    <div class="module-icon">📻</div>
+                    <h3>Alphabet phonétique NATO</h3>
+                    <div class="module-content">
+                        <p><strong>Communication radio internationale</strong></p>
+                        <div class="alphabet-grid">
+                            <span>A = Alpha</span>
+                            <span>B = Bravo</span>
+                            <span>C = Charlie</span>
+                            <span>D = Delta</span>
+                            <span>E = Echo</span>
+                            <span>F = Foxtrot</span>
+                            <span>G = Golf</span>
+                            <span>H = Hotel</span>
+                            <span>I = India</span>
+                            <span>J = Juliet</span>
+                            <span>K = Kilo</span>
+                            <span>L = Lima</span>
+                            <span>M = Mike</span>
+                            <span>N = November</span>
+                            <span>O = Oscar</span>
+                            <span>P = Papa</span>
+                            <span>Q = Quebec</span>
+                            <span>R = Romeo</span>
+                            <span>S = Sierra</span>
+                            <span>T = Tango</span>
+                            <span>U = Uniform</span>
+                            <span>V = Victor</span>
+                            <span>W = Whiskey</span>
+                            <span>X = X-ray</span>
+                            <span>Y = Yankee</span>
+                            <span>Z = Zulu</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formation-module">
+                    <div class="module-icon">✈️</div>
+                    <h3>Horizontal Stabilizer</h3>
+                    <div class="module-content">
+                        <p><strong>Stabilisateur horizontal de l'avion</strong></p>
+                        <ul>
+                            <li><strong>Localisation :</strong> À l'arrière de l'avion, sur le fuselage</li>
+                            <li><strong>Fonction :</strong> Contrôle la montée/descente (pitch)</li>
+                            <li>Contient l'élévateur (elevator)</li>
+                            <li>Essentiel pour la stabilité longitudinale</li>
+                            <li>Permet de maintenir l'avion à niveau</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recruitment Section -->
+        <section id="recrutement" class="section">
+            <h2 class="section-title">✈️ Examen de recrutement</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: #b8c6db;">
+                Une fois la formation théorique maîtrisée, vous passerez cet examen en 3 étapes
+            </p>
+            
+            <div class="steps-container">
+                <!-- Étape 1: Test écrit -->
+                <div class="step">
+                    <h3><span class="step-number">1</span>Test écrit théorique</h3>
+                    <div class="test-info">
+                        <div class="score-highlight">Score total : 50 points</div>
+                        <p>Questionnaire à choix multiples sur les notions apprises en formation :</p>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>Questions sur les PAPI lights</li>
+                            <li>Situations de windshear</li>
+                            <li>Alphabet phonétique NATO</li>
+                            <li>Rôle et localisation du stabilisateur horizontal</li>
+                        </ul>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <p><em>Barre de progression en temps réel</em></p>
+                    </div>
+                </div>
+
+                <!-- Étape 2: Entretien oral -->
+                <div class="step">
+                    <h3><span class="step-number">2</span>Entretien oral</h3>
+                    <div class="interview-card" style="background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 2rem; margin-top: 1rem;">
+                        <div class="interview-icon">🎙️</div>
+                        <h4>Discussion avec un instructeur</h4>
+                        <p>Entretien en direct via <strong>Discord</strong></p>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>Questions approfondies sur la théorie</li>
+                            <li>Mise en situation d'urgence</li>
+                            <li>Communication radio simulée</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Étape 3: Test pratique -->
+                <div class="step">
+                    <h3><span class="step-number">3</span>Test pratique sur PTFS</h3>
+                    <div class="interview-card" style="background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 2rem; margin-top: 1rem;">
+                        <div class="interview-icon">🖥️</div>
+                        <h4>Évaluation en vol</h4>
+                        <p><strong>Partage d'écran obligatoire</strong></p>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>Décollage et procédures</li>
+                            <li>Navigation et communication</li>
+                            <li>Approche et atterrissage</li>
+                            <li>Réaction aux situations d'urgence</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rank System Section -->
+        <section id="rangs" class="section">
+            <h2 class="section-title">🎖️ Système de rangs selon la note</h2>
+            
+            <div class="rank-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Avion</th>
+                            <th>Note requise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Embraer 190 / ATR-72</td>
+                            <td>75 / 100</td>
+                        </tr>
+                        <tr>
+                            <td>Airbus A320 / A220 / Boeing 737</td>
+                            <td>80 / 100</td>
+                        </tr>
+                        <tr>
+                            <td>Airbus A330 / A340 / A350 / Boeing 777 / 787</td>
+                            <td>85 / 100</td>
+                        </tr>
+                        <tr>
+                            <td>Airbus A380 / Boeing 747</td>
+                            <td>95 / 100</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
